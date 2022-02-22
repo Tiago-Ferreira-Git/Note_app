@@ -1,0 +1,86 @@
+#:kivy 2.0.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<PongGame>: 
+    size_hint: 1,1
+    MDGridLayout:
+        cols: 2
+        adaptive_size: True
+        padding: 0
+        spacing: 100,100
+        pos_hint:{"center_x":0.5,"center_y":0.5}
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            adaptive_width: True
+            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+            MDRaisedButton:
+                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
+                text: "teste1"
+                theme_text_color: "Custom"
+                text_color: get_color_from_hex("#FFFFFF")
+                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+                
+            MDIconButton:
+                on_release: root.open_menu(self,root.menu)
+                icon: "dots-vertical"
+           
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            adaptive_width: True
+            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+            MDRaisedButton:
+                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
+                text: "teste2"
+                theme_text_color: "Custom"
+                text_color: get_color_from_hex("#FFFFFF")
+                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+                
+            MDIconButton:
+                on_release: root.open_menu(self,root.menu)
+                icon: "dots-vertical"
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            adaptive_width: True
+            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+            MDRaisedButton:
+                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
+                text: "teste3"
+                theme_text_color: "Custom"
+                text_color: get_color_from_hex("#FFFFFF")
+                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+                
+            MDIconButton:
+                on_release: root.open_menu(self,root.menu)
+                icon: "dots-vertical"
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            adaptive_width: True
+            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+            MDRaisedButton:
+                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
+                text: "teste4"
+                theme_text_color: "Custom"
+                text_color: get_color_from_hex("#FFFFFF")
+                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+                
+            MDIconButton:
+                on_release: root.open_menu(self,root.menu)
+                icon: "dots-vertical"
+
+       
+<Item>
+    IconLeftWidget:
+        icon: root.left_icon
+        user_font_size: "20sp"
+
+    MDLabel:
+        text: root.right_text
+        valign: "center"
+        #font_style: "Overline"
+        text_size: "20dp"
+        adaptive_size: True
+        pos_hint: {"center_y": .5}

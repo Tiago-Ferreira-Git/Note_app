@@ -9,78 +9,52 @@
         padding: 0
         spacing: 100,100
         pos_hint:{"center_x":0.5,"center_y":0.5}
-        MDBoxLayout:
-            orientation: 'horizontal'
-            adaptive_height: True
-            adaptive_width: True
-            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-            MDRaisedButton:
-                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
-                text: "teste1"
-                theme_text_color: "Custom"
-                text_color: get_color_from_hex("#FFFFFF")
-                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-                
-            MDIconButton:
-                on_release: root.open_menu(self,root.menu)
-                icon: "dots-vertical"
+        Table:
            
-        MDBoxLayout:
-            orientation: 'horizontal'
-            adaptive_height: True
-            adaptive_width: True
-            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-            MDRaisedButton:
-                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
-                text: "teste2"
-                theme_text_color: "Custom"
-                text_color: get_color_from_hex("#FFFFFF")
-                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-                
-            MDIconButton:
-                on_release: root.open_menu(self,root.menu)
-                icon: "dots-vertical"
-        MDBoxLayout:
-            orientation: 'horizontal'
-            adaptive_height: True
-            adaptive_width: True
-            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-            MDRaisedButton:
-                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
-                text: "teste3"
-                theme_text_color: "Custom"
-                text_color: get_color_from_hex("#FFFFFF")
-                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-                
-            MDIconButton:
-                on_release: root.open_menu(self,root.menu)
-                icon: "dots-vertical"
-        MDBoxLayout:
-            orientation: 'horizontal'
-            adaptive_height: True
-            adaptive_width: True
-            md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-            MDRaisedButton:
-                pos_hint: {'center_x': 0.0, 'center_y': 0.5}
-                text: "teste4"
-                theme_text_color: "Custom"
-                text_color: get_color_from_hex("#FFFFFF")
-                md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-                
-            MDIconButton:
-                on_release: root.open_menu(self,root.menu)
-                icon: "dots-vertical"
+        Table:
+            
+        Table:
 
-       
+<Table>
+    padding:0,0,0,0
+    orientation: 'horizontal'
+    adaptive_height: True
+    adaptive_width: True
+    md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+    MDRaisedButton:
+        pos_hint: {'center_x': 0.0, 'center_y': 0.5}
+        
+        text: root.table_name
+        theme_text_color: "Custom"
+        text_color: get_color_from_hex("#FFFFFF")
+        md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
+        
+    MDIconButton:
+        on_release: root.open_menu(self,root.menu)
+        icon: "dots-vertical"
+<Content>
+    orientation: "vertical"
+    spacing: "6dp"
+    size_hint_y: None
+    height: "60dp"
+    MDTextField:
+    
 <Item>
+    padding:5,0,0,0
+    adaptive_size:True
+    font_style: "Caption"
     IconLeftWidget:
         icon: root.left_icon
-        user_font_size: "20sp"
+        adaptive_size:True
+        disabled:True
 
+        
     MDLabel:
-        text: root.right_text
-        valign: "center"
+        #text: root.text
+        #size:self.texture_size
+        #valign: "center"
         #font_style: "Overline"
-        text_size: "20dp"
-        adaptive_size: True
-        pos_hint: {"center_y": .5}
+        #text_size: root.width,None
+        #disabled: True
+        #adaptive_size: True
+        #pos_hint: {"center_y": .5}

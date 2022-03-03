@@ -1,26 +1,22 @@
 from cgitb import text
 from logging import root
-from kivy.app import App
-from kivy.uix.widget import Widget
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.floatlayout import MDFloatLayout
+
 from kivymd.app import MDApp
-#from kivymd.uix.menu import MDDropdownMenu,MDDropdownItem
+from kivy.uix.widget import Widget
+from kivymd.uix.boxlayout import MDBoxLayout,BoxLayout
+from kivymd.uix.gridlayout import MDGridLayout
+from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.dropdownitem import MDDropDownItem
 from kivymd.uix.list import IRightBodyTouch, OneLineAvatarIconListItem
 from kivy.properties import StringProperty
 from kivy.uix.textinput import TextInput
-from kivymd.uix.button import MDFlatButton
+from kivymd.uix.button import MDFlatButton,MDRaisedButton,MDIconButton
 from kivymd.uix.dialog import MDDialog
-from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.textfield import MDTextField
 import os
 
 class PongGame(MDFloatLayout):
-    
-    def callback(instance):
-        print('The button is being pressed')
     
     def build(self):
         return Builder.load_file("note.kv")
@@ -69,7 +65,7 @@ class Table(MDBoxLayout):
                             text="CANCEL",
                             theme_text_color="Custom",
                             text_color=(1,1,1,1),
-                            on_release= lambda x: self.dialog.dismiss()
+                            on_release= lambda x: self.closeDialog()
                         ),
                         MDFlatButton(
                             text="UPDATE",
@@ -83,15 +79,24 @@ class Table(MDBoxLayout):
                 )
             self.dialog.open()
             #print(self.menu.caller.parent.table_name)
-
+        if text_item == "remove":
+            
+            self.remove_widget(self.parent.children[0])
+            print(self.parent.children[0])
+            for obj in self.parent.children:
+                if isinstance(obj, MDRaisedButton):
+                    print(obj)
     def grabText(self):
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
                 self.menu.caller.parent.table_name = obj.text
         self.dialog.dismiss()
+        self.menu.dismiss()
 
-    def closeDialog(self, inst):
+    def closeDialog(self):
+        
         self.dialog.dismiss()
+        self.menu.dismiss()
 
     def open_menu(self,btn,menu):
         menu.caller = btn
@@ -101,6 +106,20 @@ class Table(MDBoxLayout):
 
 class Content(BoxLayout):
     pass
+class Add_table(BoxLayout):
+    pass
+class Main_box(MDGridLayout):
+    
+    def add_table(self):
+        obj = self.children[0]
+        if isinstance(obj, Add_table):
+            print(obj)
+            self.remove_widget(obj)
+        
+        self.add_widget(Table())
+        self.add_widget(Add_table())
+    
+    
 class Note_app(MDApp):
     
     def build(self):
@@ -112,3 +131,4 @@ class Note_app(MDApp):
 if __name__ == '__main__':
     Note_app().run()
 
+#icon: plus-circle

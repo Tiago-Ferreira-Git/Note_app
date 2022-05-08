@@ -80,9 +80,10 @@ class Table(MDBoxLayout):
             self.dialog.open()
             #print(self.menu.caller.parent.table_name)
         if text_item == "remove":
-            
-            self.remove_widget(self.parent.children[0])
-            print(self.parent.children[0])
+            obj = self.parent.children[1]
+            if isinstance(obj, Table):
+                self.remove_widget(obj)
+                print(obj)
             for obj in self.parent.children:
                 if isinstance(obj, MDRaisedButton):
                     print(obj)

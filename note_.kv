@@ -5,22 +5,18 @@
     size_hint: 1,1
     Main_box:
         
-        Table:
-           
-        Table:
-            
-        Table:
-
         Add_table:
         
 <Main_box>:
     cols: 2
-    adaptive_size: True
+    size_hint_y :  None
+    size_hint_x :  None
     padding: 0
-    spacing: 100,100
-    pos_hint:{"center_x":0.5,"center_y":0.5}
-    row_default_width: root.width * 0.8
+    spacing: 100,0
+    pos_hint:{"center_x":0.35,"center_y":0.95}
+    row_default_width: root.width 
     row_force_default: True
+    row_default_height : root.height
 
 <Table>
     padding:0,0,0,0
@@ -43,12 +39,12 @@
 <Add_table>
     orientation: 'horizontal'
     adaptive_height: True
-    md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-    halign: 'center'        #default anyway
-    size_hint_x: 0.5
+    adaptive_width: True
+    padding:0,0,0,0
+    #halign: 'center'        #default anyway
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
     MDIconButton:
         md_bg_color: get_color_from_hex("#ecd4c2") #Temp Color
-        size_hint_x: 0.5
         on_release: self.parent.parent.add_table()
         icon: "plus-circle"
 <Content>

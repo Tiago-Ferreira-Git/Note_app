@@ -16,6 +16,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.textfield import MDTextField
 import os
 
+table_number = 0
 class PongGame(MDFloatLayout):
     
     def build(self):
@@ -27,22 +28,25 @@ class Item(OneLineAvatarIconListItem,MDBoxLayout):
     left_icon = StringProperty()
 
 class Table(MDBoxLayout):
-    table_name = StringProperty("Mesa")
     
+    global table_number
+    print(table_number)
     dialog = None
+    table_name = StringProperty("Mesa " + str(table_number))
+    
     def on_kv_post(self, base_widget):
         menu_items = [
             {
                 "text": f"Editar",
                 "left_icon": "pencil",
                 "viewclass": "Item",
-                "on_release": lambda x=f"edit": self.menu_callback(x),
+                "on_release": lambda x=f"edit": self.menu_callback(x,self.table_name),
             },
             {
                 "text": f"Remover",
                 "left_icon": "sticker-remove-outline",
                 "viewclass": "Item",
-                "on_release": lambda x=f"remove": self.menu_callback(x),
+                "on_release": lambda x=f"remove": self.menu_callback(x,self.table_name),
             }
         ]
         self.menu = MDDropdownMenu(
@@ -54,7 +58,7 @@ class Table(MDBoxLayout):
             max_height=100,
             hor_growth = "right",
         )
-    def menu_callback(self, text_item):
+    def menu_callback(self, text_item,table_name):
         if text_item == "edit":
             if not self.dialog:
                 self.dialog = MDDialog(
@@ -80,13 +84,18 @@ class Table(MDBoxLayout):
             self.dialog.open()
             #print(self.menu.caller.parent.table_name)
         if text_item == "remove":
-            obj = self.parent.children[1]
-            if isinstance(obj, Table):
-                self.remove_widget(obj)
-                print(obj)
-            for obj in self.parent.children:
-                if isinstance(obj, MDRaisedButton):
-                    print(obj)
+            obj = self.parent.children
+            #print(obj)
+            for objects in obj:
+                #print(objects)
+                if isinstance(objects, Table):
+                   #self.remove_widget(obj)
+                    if objects.table_name == table_name:
+
+                       self.parent.remove_widget(objects)
+
+                    #print(objects.table_name,table_name)
+            
     def grabText(self):
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
@@ -111,14 +120,24 @@ class Add_table(BoxLayout):
     pass
 class Main_box(MDGridLayout):
     
+    
     def add_table(self):
+        global table_number
+        
+        
         obj = self.children[0]
         if isinstance(obj, Add_table):
             print(obj)
             self.remove_widget(obj)
-        
+        if table_number < 12:
+            table_number += 1
+        else:
+            table_number = 1
+        print(table_number)
+        print(self.children)
         self.add_widget(Table())
         self.add_widget(Add_table())
+        self.children[1].table_name = "Mesa " + str(table_number)
     
     
 class Note_app(MDApp):
